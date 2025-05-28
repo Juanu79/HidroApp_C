@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HidroApp - Recordatorio de Hidratación</title>
+    <meta name="description" content="Mantén tu hidratación bajo control con recordatorios inteligentes">
+    <link rel="stylesheet" href="src/style.css">
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#3B82F6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="HidrApp">
+    <!-- Manifest y otros meta tags aquí -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">💧</div>
+            <div class="app-title">HidrApp</div>
+            <div class="subtitle">Mantén tu hidratación perfecta</div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="dailyCount">0</div>
+                <div class="stat-label">Vasos hoy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="dailyGoal">8</div>
+                <div class="stat-label">Meta diaria</div>
+            </div>
+        </div>
+
+        <div class="progress-section">
+            <div class="section-title">Progreso diario</div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text" id="progressText">0% completado</div>
+        </div>
+
+        <div class="quick-actions">
+            <button class="action-btn primary" id="addWaterBtn">
+                💧 Agregar vaso
+            </button>
+            <button class="action-btn" id="showHistoryBtn">
+                📊 Historial
+            </button>
+            <button class="action-btn" id="showSettingsBtn">
+                ⚙️ Configurar
+            </button>
+            <button class="action-btn" id="testNotificationBtn">
+                🔔 Probar alerta
+            </button>
+        </div>
+
+        <div class="settings-section">
+            <div class="section-title">Recordatorios</div>
+            <div class="setting-item">
+                <span class="setting-label">Próximo recordatorio</span>
+                <span class="setting-value" id="nextReminder">--:--</span>
+            </div>
+            <div class="setting-item">
+                <span class="setting-label">Intervalo</span>
+                <span class="setting-value" id="intervalDisplay">2 horas</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Configuración -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-icon">⚙️</div>
+            <div class="modal-title">Configuración</div>
+            <div class="modal-text">
+                <div class="setting-item">
+                    <span class="setting-label">Meta diaria (vasos)</span>
+                    <input type="number" id="goalInput" class="time-input" min="1" max="20" value="8">
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Intervalo (horas)</span>
+                    <input type="number" id="intervalInput" class="time-input" min="0.5" max="12" step="0.5" value="2">
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Inicio</span>
+                    <input type="time" id="startTimeInput" class="time-input" value="07:00">
+                </div>
+                <div class="setting-item">
+                    <span class="setting-label">Fin</span>
+                    <input type="time" id="endTimeInput" class="time-input" value="22:00">
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="cancelSettingsBtn">Cancelar</button>
+                <button class="btn btn-primary" id="saveSettingsBtn">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Historial -->
+    <div class="modal" id="historyModal">
+        <div class="modal-content">
+            <div class="modal-icon">📊</div>
+            <div class="modal-title">Historial de hoy</div>
+            <div class="modal-text">
+                <div class="history-list" id="historyList">
+                    <div style="text-align: center; color: #6B7280; padding: 20px;">
+                        No hay registros aún
+                    </div>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="closeHistoryBtn">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-icon">💧</div>
+            <div class="modal-title">¡Excelente!</div>
+            <div class="modal-text">
+                Has agregado un vaso de agua. ¡Sigue así!
+            </div>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="closeConfirmBtn">Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification">
+        <div id="notificationText">¡Es hora de beber agua! 💧</div>
+    </div>
+
+    <!-- Carga el JS principal de tu app -->
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
